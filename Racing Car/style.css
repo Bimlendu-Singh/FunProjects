@@ -36,3 +36,14 @@
   background-repeat: no-repeat;
   position: absolute;
 } */
+
+.car {
+  height: 100px;
+  width: 380px;
+  background-image: url(car_body.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 444px;
+  bottom: 170px;
+}
