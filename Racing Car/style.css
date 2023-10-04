@@ -47,3 +47,17 @@
   left: 444px;
   bottom: 170px;
 }
+
+.wheel1 {
+  width: 77px;
+  position: relative;
+  top: 44px;
+  left: 34px;
+}
+
+.wheel2 {
+  width: 77px;
+  position: relative;
+  top: 44px;
+  left: 34px;
+}
