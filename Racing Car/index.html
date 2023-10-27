@@ -9,6 +9,8 @@
     <title>Racing Car</title>
   </head>
   <body>
+    <audio id="myAudio" src="sound" autoplay></audio>
+
     <div class="container">
       <div class="sky">
         <div class="trees"></div>
@@ -24,5 +26,15 @@
         <div class="gaari"></div>
       </div>
     </div>
+
+    <!-- <script>
+      // Check if the browser supports the "audio/mp3" format
+      const audio = document.getElementById("myAudio");
+      if (audio.canPlayType("audio/mp3") === "maybe") {
+        console.log("Browser supports MP3 audio format.");
+      } else {
+        console.log("Browser does not support MP3 audio format.");
+      }
+    </script> -->
   </body>
 </html>
