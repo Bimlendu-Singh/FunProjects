@@ -57,6 +57,30 @@ body {
   animation: shake linear 3s infinite;
 }
 
+.car2 {
+  height: 100px;
+  width: 380px;
+  background-image: url(car_body3.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 46px;
+  bottom: 24vh;
+  animation: shake linear 3s infinite;
+}
+
+.car3 {
+  height: 100px;
+  width: 380px;
+  background-image: url(car_body4.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 878px;
+  bottom: 21vh;
+  animation: shake linear 3s infinite;
+}
+
 .wheel1 img {
   width: 76px;
   position: relative;
@@ -70,6 +94,22 @@ body {
   position: relative;
   top: -43px;
   left: 234px;
+  animation: wheelRotation linear 0.4s infinite;
+}
+
+.wheel3 img {
+  width: 77px;
+  position: relative;
+  top: 47px;
+  left: 33px;
+  animation: wheelRotation linear 0.4s infinite;
+}
+
+.wheel4 img {
+  width: 77px;
+  position: relative;
+  top: -36px;
+  left: 256px;
   animation: wheelRotation linear 0.4s infinite;
 }
 
