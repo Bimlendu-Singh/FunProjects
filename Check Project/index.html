@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Project</title>
+
+    <style>
+        .container{
+            display: grid;
+            width: 80%;
+            height: 100vh;
+            margin: auto;
+            background-color: black;
+            grid-template-columns: 1fr 2fr 3fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 9px;
+        }
+
+        .items{
+            background-color: gold;
+        }
+
+        .item1{
+            grid-row: 1/3;
+        }
+
+        .item6{
+            grid-column: 1/-1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="items item1"></div>
+        <div class="items item2"></div>
+        <div class="items item3"></div>
+        <div class="items item4"></div>
+        <div class="items item5"></div>
+        <div class="items item6"></div>
+    </div>
+</body>
+</html>
