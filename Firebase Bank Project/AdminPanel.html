@@ -92,14 +92,18 @@
 
         // This is to Register Employee, but first admin authorisation will be checked
         const RegisterEmployeeUser = () => {
+            // Admin email given manually, admin pass will be taken from admin and passed here to check authorization
             signInWithEmailAndPassword(auth,"admin@bank.com", AdminPass.value)
                 .then((admincred) => {
+                    // Now user email and pass will be created or get registered
                     createUserWithEmailAndPassword(auth, email.value, pass.value)
                         .then((creds) => {
+                            // Also it will be stored in realtime database making db EmployeeList , all the user value is passed from here 
                             set(ref(db, "EmployeeList/" + creds.user.uid), {
                                 Email: email.value,
                                 FullName: name.value
                             });
+                            // After registering employee or user admin will be signed out and pass value will be set empty
                             signOut(auth);
                             AdminPass.value = "";
                             alert("Employee User was Created");
@@ -114,6 +118,7 @@
 
         }
 
+        // Wheen AddEmployeeButton get triggered then this will listen and will call RegisterEmployeeUser funciton
         AddBtn.addEventListener('click', RegisterEmployeeUser);
 
       </script>
