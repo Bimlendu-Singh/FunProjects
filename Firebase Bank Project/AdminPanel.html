@@ -92,8 +92,29 @@
 
         // This is to Register Employee, but first admin authorisation will be checked
         const RegisterEmployeeUser = () => {
-            signInWithEmailAndPassword(auth,"")
+            signInWithEmailAndPassword(auth,"admin@bank.com", AdminPass.value)
+                .then((admincred) => {
+                    createUserWithEmailAndPassword(auth, email.value, pass.value)
+                        .then((creds) => {
+                            set(ref(db, "EmployeeList/" + creds.user.uid), {
+                                Email: email.value,
+                                FullName: name.value
+                            });
+                            signOut(auth);
+                            AdminPass.value = "";
+                            alert("Employee User was Created");
+                        })
+                        .catch(error => {
+                            alert("error: " +error);
+                        })
+                })
+                .catch(error => {
+                    alert("error: " +error);
+                })
+
         }
+
+        AddBtn.addEventListener('click', RegisterEmployeeUser);
 
       </script>
 
