@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bank Firebase Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Navabar section starts here -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Create New Account</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="CreateNewAccount.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <!-- This dropdown menu part  -->
+                <form class="d-flex">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Username
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="SignOutLink"></a>Sign Out</a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Navabar section Ends here -->
+
+    <div id="MainDiv" class="w-25 m-4">
+        
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="EmailInp" placeholder="name@example.com">
+            <label for="floatingInput">Email Address</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="PasswordInp" placeholder="Password">
+            <label>Password</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="AccTitleInp" placeholder="Password">
+            <label>Account Title</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="CnicInp" placeholder="Password">
+            <label>Cnic Number</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="phoneInp" placeholder="Password">
+            <label>Phone Number</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="balInp" placeholder="Password">
+            <label>Initial Balance</label>
+        </div>
+
+        <button id="RegisterBtn" class="btn btn-primary w-100 p-2">Register Customer</button>
+
+    </div>
+
+
+
+    <!-- Module type script CDN file -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCc7BYJAqYXCH_K9NkSYPeoOhtIZGmvevk",
+            authDomain: "firebank-1b5f9.firebaseapp.com",
+            databaseURL: "https://firebank-1b5f9-default-rtdb.firebaseio.com",
+            projectId: "firebank-1b5f9",
+            storageBucket: "firebank-1b5f9.appspot.com",
+            messagingSenderId: "666638026014",
+            appId: "1:666638026014:web:041fcf26cbf75839c5750f"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth();
+
+        // Reference of the input taken from the user , storing in variable so it can be passed in function
+        const email = document.getElementById("EmailInp");
+        const pass = document.getElementById("PasswordInp");
+        const LoginBtn = document.getElementById("LoginBtn");
+
+        // If user is already logged in , it will send or direct him to CreateNewAccount page
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = "CreateNewAccount.html";
+            }
+        })
+
+        // If user is not logged in , then it will ask for email and pass, after verifying -> then it will send user to CreateNewAccount page
+        // Login Employee function
+        const LoginEmployee = () => {
+            signInWithEmailAndPassword(auth, email.value, pass.value)
+                .then((creds) => {
+                    window.location.href = "CreateNewAccount.html";
+                })
+                .catch(error => {
+                    alert("error: " + error);
+                })
+        }
+
+        LoginBtn.addEventListener('click', LoginEmployee);
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
