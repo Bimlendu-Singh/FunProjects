@@ -38,7 +38,7 @@
                             Username
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" id="SignOutLink"></a>Sign Out</a></li>
+                            <li><a class="dropdown-item disabled" id="SignOutLink"></a>Sign Out</a></li>
                         </ul>
                     </div>
                 </form>
@@ -117,24 +117,8 @@
 
         // If user is already logged in , it will send or direct him to CreateNewAccount page
         onAuthStateChanged(auth, (user) => {
-            if (user) {
-                window.location.href = "CreateNewAccount.html";
-            }
+            
         })
-
-        // If user is not logged in , then it will ask for email and pass, after verifying -> then it will send user to CreateNewAccount page
-        // Login Employee function
-        const LoginEmployee = () => {
-            signInWithEmailAndPassword(auth, email.value, pass.value)
-                .then((creds) => {
-                    window.location.href = "CreateNewAccount.html";
-                })
-                .catch(error => {
-                    alert("error: " + error);
-                })
-        }
-
-        LoginBtn.addEventListener('click', LoginEmployee);
 
 
     </script>
