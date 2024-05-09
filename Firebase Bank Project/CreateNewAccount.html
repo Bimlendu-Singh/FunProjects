@@ -132,8 +132,13 @@
                 // By changing the innerhtml or username to HIs original FullName, mind you it will happen when user is logged in.
                 get(child(dbref, "EmployeeList/" + user.uid))
                     .then((snapshot) =>) {
-                        
+                        UserDrop.innerHTML = snapshot.val().FullName;
+                        UserDrop.disabled = false;
+                        MainDiv.style.display = "block";
                     }
+            }
+            else {
+                window.location.href = "login.html";
             }
         })
 
