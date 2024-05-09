@@ -90,6 +90,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        // Fetching or getting user data from databse or we can say we are demanding data from firebase database
         import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
@@ -110,7 +111,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase();
         const auth = getAuth();
-        const dbref = ref(db);
+        const dbref = ref(db); //Inserting the User's fetched data from the firebase database 
 
         // Reference of the input taken from the user , storing in variable so it can be passed in function
         const email = document.getElementById("EmailInp");
@@ -126,6 +127,9 @@
         // If user is already logged in , it will send or direct him to CreateNewAccount page
         onAuthStateChanged(auth, (user) => {
             if(user){
+                // Now when user is logged in we will fetch his usernamem from database by ref method(see up in code) that comes in snapshot form
+                // And then we will access that data by using val() method in snapshot and we will show his username in profile 
+                // By changing the innerhtml or username to HIs original FullName, mind you it will happen when user is logged in.
                 get(child(dbref, "EmployeeList/" + user.uid))
                     .then((snapshot) =>) {
                         
