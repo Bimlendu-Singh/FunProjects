@@ -23,7 +23,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="CreateNewAccount.html">Create New Account</a>
+                        <a class="nav-link active" aria-current="page" href="CreateNewAccount.html">Create New
+                            Account</a>
                     </li>
 
                 </ul>
@@ -31,9 +32,8 @@
                 <form class="d-flex">
                     <div class="dropdown">
                         <!-- Button is diabled here until user is logged in after login sign out option will activate, also giving id it userdrop -->
-                        <button class="btn btn-outline-secondary dropdown-toggle " disabled id="UserDrop" type="button" 
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle " disabled id="UserDrop" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Username
                         </button>
                         <ul class="dropdown-menu">
@@ -48,8 +48,8 @@
 
     <!-- Form input starts from here -->
     <!-- Here form visibility is diabled until user logged in and profile is visible -->
-    <div id="MainDiv" class="w-25 m-4" style="display: none;"> 
-        
+    <div id="MainDiv" class="w-25 m-4" style="display: none;">
+
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="EmailInp" placeholder="name@example.com">
             <label for="floatingInput">Email Address</label>
@@ -126,18 +126,20 @@
 
         // If user is already logged in , it will send or direct him to CreateNewAccount page
         onAuthStateChanged(auth, (user) => {
-            if(user){
+            if (user) {
                 // Now when user is logged in we will fetch his usernamem from database by ref method(see up in code) that comes in snapshot form
                 // And then we will access that data by using val() method in snapshot and we will show his username in profile 
                 // By changing the innerhtml or username to HIs original FullName, mind you it will happen when user is logged in.
                 get(child(dbref, "EmployeeList/" + user.uid))
-                    .then((snapshot) =>) {
-                        UserDrop.innerHTML = snapshot.val().FullName;
-                        UserDrop.disabled = false;
-                        MainDiv.style.display = "block";
-                    }
+                    .then((snapshot) => {
+                    UserDrop.innerHTML = snapshot.val().FullName; //UserDrop is id of button so button will change into UserName
+                    UserDrop.disabled = false; //And the disabled button will be enabled
+                    MainDiv.style.display = "block";  // Also that, we were hiding the inputs name,email etc. before login
+                    // , we will starts displaying that after login
+                })
             }
             else {
+                // If the user is not logged in we will direct them to login page
                 window.location.href = "login.html";
             }
         })
