@@ -30,12 +30,12 @@
                 <!-- This dropdown menu part  -->
                 <form class="d-flex">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        <button class="btn btn-outline-secondary dropdown-toggle " disabled type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Username
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item disabled" id="SignOutLink"></a>Sign Out</a></li>
+                            <li><a class="dropdown-item " id="SignOutLink"></a>Sign Out</a></li>
                         </ul>
                     </div>
                 </form>
@@ -44,8 +44,9 @@
     </nav>
     <!-- Navabar section Ends here -->
 
-    <!-- Form input starts here -->
-    <div id="MainDiv" class="w-25 m-4" style="display: none;">
+    <!-- Form input starts from here -->
+    <!-- Here form visibility is diabled until user logged in and profile is visible -->
+    <div id="MainDiv" class="w-25 m-4" style="display: none;"> 
         
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="EmailInp" placeholder="name@example.com">
@@ -87,7 +88,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+        import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -107,15 +108,23 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase();
         const auth = getAuth();
+        const dbref = ref(db);
 
         // Reference of the input taken from the user , storing in variable so it can be passed in function
         const email = document.getElementById("EmailInp");
+        const acctitleInp = document.getElementById("AccTitleInp");
+        const cnicInp = document.getElementById("CnicInp");
         const pass = document.getElementById("PasswordInp");
         const LoginBtn = document.getElementById("LoginBtn");
 
         // If user is already logged in , it will send or direct him to CreateNewAccount page
         onAuthStateChanged(auth, (user) => {
-            
+            if(user){
+                get(child(dbref, "EmployeeList/" + user.uid))
+                    .then((snapshot) =>) {
+                        
+                    }
+            }
         })
 
 
