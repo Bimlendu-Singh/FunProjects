@@ -92,7 +92,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
         // Fetching or getting user data from databse or we can say we are demanding data from firebase database
         import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -143,6 +143,44 @@
                 window.location.href = "login.html";
             }
         })
+
+        // Registering the customer function 
+        const RegisterCustomer = () => {
+                // Making accnbr for customer each number will be given or assign to each user by this below patterna
+                const accnbr = "00001234" + phnumInp.value;
+
+                // Setting the value or inserting the input of customer to the firebase database by set properties
+                set(ref(db, "CustomerList/" + accnbr), {
+                    Email: email.value,
+                    AccountTitle: acctitleInp.value,
+                    Cnic: cnicInp.value,
+                    Phone: phnumInp.value,
+                    Balance: balInp.value,
+                    AccountNbr: accnbr
+                })
+                // After succefully data insertion we will show alert of success.
+                .then(()=>{
+                    alert("Customer registered!");
+                })
+                .catch(error => {
+                    alert("error: " + error);
+                })
+
+
+        }
+
+        // Function for loggin out
+        const Logout = () => {
+            signOut(auth)
+                .then(() => {
+                    // After log out it will again redirect it to login page
+                    window.location.href = "login.html";
+                })
+        }
+
+        // Assigning function to the Buttons
+        LogOutBtn.addEventListener('click',Logout);
+        RegBtn.addEventListener('click',RegisterCustomer);
 
 
     </script>
