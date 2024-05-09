@@ -114,8 +114,11 @@
         const email = document.getElementById("EmailInp");
         const acctitleInp = document.getElementById("AccTitleInp");
         const cnicInp = document.getElementById("CnicInp");
-        const pass = document.getElementById("PasswordInp");
-        const LoginBtn = document.getElementById("LoginBtn");
+        const phnumInp = document.getElementById("PhoneInp");
+        const balInp = document.getElementById("BalanceInp");
+        const MainDiv = document.getElementById("MainDiv");
+        const LogOutBtn = document.getElementById("SignOutLink");
+        const RegBtn = document.getElementById("RegisterBtn");
 
         // If user is already logged in , it will send or direct him to CreateNewAccount page
         onAuthStateChanged(auth, (user) => {
