@@ -30,7 +30,9 @@
                 <!-- This dropdown menu part  -->
                 <form class="d-flex">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle " disabled type="button" data-bs-toggle="dropdown"
+                        <!-- Button is diabled here until user is logged in after login sign out option will activate, also giving id it userdrop -->
+                        <button class="btn btn-outline-secondary dropdown-toggle " disabled id="UserDrop" type="button" 
+                            data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Username
                         </button>
@@ -119,6 +121,7 @@
         const MainDiv = document.getElementById("MainDiv");
         const LogOutBtn = document.getElementById("SignOutLink");
         const RegBtn = document.getElementById("RegisterBtn");
+        const UserDrop = document.getElementById("UserDrop");
 
         // If user is already logged in , it will send or direct him to CreateNewAccount page
         onAuthStateChanged(auth, (user) => {
